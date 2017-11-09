@@ -1,8 +1,14 @@
 FROM mongo
-MAINTAINER Paolo Scanferla <paolo.scanferla@mondora.com>
-RUN mkdir /script
-ADD . /script
-RUN apt-get update && apt-get install -y python-pip cron
-RUN rm -rf /var/lib/apt/lists/*
-RUN pip install awscli
+
+LABEL maintainer "OUcare.com <oucaredev@oucare.com>"
+
+RUN apt-get update \
+ && apt-get install -y python-pip cron \
+ && rm -rf /var/lib/apt/lists/* \
+ && pip install awscli
+
+WORKDIR /script
+
+COPY . /script
+
 ENTRYPOINT ["/script/start.sh"]
