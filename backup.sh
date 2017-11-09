@@ -20,8 +20,8 @@ tar -zcvf $OUT dump/
 rm -rf dump/
 
 echo "$(get_date) [Step 3/3] Uploading archive to S3"
-echo "$(get_date) aws s3api put-object --bucket $S3_BUCKET --key $S3_PATH$OUT --body $OUT"
-/usr/local/bin/aws s3api put-object --bucket $S3_BUCKET --key $S3_PATH$OUT --body $OUT
+echo "$(get_date) aws s3api put-object --bucket $S3_BUCKET --key $S3_PATH$OUT --body $OUT --storage-class $S3_STORAGE_CLASS"
+/usr/local/bin/aws s3api put-object --bucket $S3_BUCKET --key $S3_PATH$OUT --body $OUT --storage-class $S3_STORAGE_CLASS
 rm $OUT
 
 echo "$(get_date) Mongo backup completed successfully"
