@@ -10,9 +10,11 @@ environment variables:
 
 * `MONGO_HOST`
 * `MONGO_PORT`
+* `MONGO_DB`, optional, database name
 * `AWS_ACCESS_KEY_ID`
 * `AWS_SECRET_ACCESS_KEY`
 * `S3_BUCKET`
+* `S3_PATH`, optional, path on S3 bucket
 * `BACKUP_FILENAME_PREFIX`, optional, defaults to `mongo_backup`
 * `BACKUP_FILENAME_DATE_FORMAT`, optional, defaults to `%Y%m%d`
 * `CRON_SCHEDULE`, optional, defaults to `0 1 * * *`

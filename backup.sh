@@ -12,14 +12,16 @@ OUT=$BACKUP_FILENAME_PREFIX-$(date +$BACKUP_FILENAME_DATE_FORMAT).tgz
 echo "$(get_date) Mongo backup started"
 
 echo "$(get_date) [Step 1/3] Running mongodump"
-mongodump --quiet -h $MONGO_HOST -p $MONGO_PORT
+echo "$(get_date) mongodump --quiet -h $MONGO_HOST -p $MONGO_PORT $MONGO_DB_ARG"
+mongodump --quiet -h $MONGO_HOST -p $MONGO_PORT $MONGO_DB_ARG
 
 echo "$(get_date) [Step 2/3] Creating tar archive"
 tar -zcvf $OUT dump/
 rm -rf dump/
 
 echo "$(get_date) [Step 3/3] Uploading archive to S3"
-/usr/local/bin/aws s3 cp $OUT s3://$S3_BUCKET/
+echo "$(get_date) aws s3api put-object --bucket $S3_BUCKET --key $S3_PATH$OUT --body $OUT"
+/usr/local/bin/aws s3api put-object --bucket $S3_BUCKET --key $S3_PATH$OUT --body $OUT
 rm $OUT
 
 echo "$(get_date) Mongo backup completed successfully"
