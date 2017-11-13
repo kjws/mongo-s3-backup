@@ -2,6 +2,8 @@ FROM mongo:3.4.10
 
 LABEL maintainer "OUcare.com <oucaredev@oucare.com>"
 
+VOLUME /var/log/
+
 RUN apt-get update \
  && apt-get install -y python-pip cron \
  && rm -rf /var/lib/apt/lists/* \
