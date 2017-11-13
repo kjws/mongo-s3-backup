@@ -1,4 +1,4 @@
-FROM mongo
+FROM mongo:3.4.10
 
 LABEL maintainer "OUcare.com <oucaredev@oucare.com>"
 
